@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ubivashka.messenger</groupId>
+		<artifactId>MultiMessenger</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<artifactId>telegram</artifactId>
+
+	<properties>
+		<java-telegram-bot-api.version>6.0.1</java-telegram-bot-api.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ubivashka.messenger</groupId>
+			<artifactId>common</artifactId>
+			<version>${core.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.pengrad</groupId>
+			<artifactId>java-telegram-bot-api</artifactId>
+			<version>${java-telegram-bot-api.version}</version>
+		</dependency>
+	</dependencies>
+</project>
