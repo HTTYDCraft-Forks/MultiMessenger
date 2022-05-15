@@ -26,4 +26,22 @@ public interface Identificator extends Castable<Identificator> {
 			return asString();
 		return null;
 	}
+
+	static Identificator fromObject(Object object) {
+		if (object instanceof Long)
+			return new NumberIdentificator((Long) object);
+		if (object instanceof Integer)
+			return new NumberIdentificator((Integer) object);
+		if (object instanceof String)
+			return new StringIdentificator((String) object);
+		return null;
+	}
+	
+	static Identificator of(long id) {
+		return new NumberIdentificator(id);
+	}
+	
+	static Identificator of(String id) {
+		return new StringIdentificator(id);
+	}
 }
