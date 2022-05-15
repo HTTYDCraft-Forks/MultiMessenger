@@ -54,6 +54,14 @@ public class TelegramMessage extends DefaultMessage {
 		return requests;
 	}
 
+	public static TelegramApiProvider getDefaultApiProvider() {
+		return defaultApiProvider;
+	}
+
+	public static void setDefaultApiProvider(TelegramApiProvider defaultApiProvider) {
+		TelegramMessage.defaultApiProvider = defaultApiProvider;
+	}
+
 	private BaseRequest<?, ?> toRequest(Identificator identificator, MessengerFile file) {
 		switch (file.getFileType()) {
 		case AUDIO:
