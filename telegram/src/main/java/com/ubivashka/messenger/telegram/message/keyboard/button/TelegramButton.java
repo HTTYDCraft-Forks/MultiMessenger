@@ -8,6 +8,18 @@ import com.ubivaska.messenger.common.button.DefaultButton;
 public class TelegramButton extends DefaultButton {
 	private static final TelegramButtonAction DEFAULT_ACTION = new TelegramButtonAction(TelegramButtonType.REPLY);
 
+	public TelegramButton(InlineKeyboardButton wrappingButton) {
+		super(wrappingButton.text());
+		if(wrappingButton.callbackData()!=null) {
+			action = new TelegramButtonAction(TelegramButtonType.CALLBACK);
+			actionData = wrappingButton.callbackData();
+		}
+		if(wrappingButton.url()!=null) {
+			action = new TelegramButtonAction(TelegramButtonType.OPEN_LINK);
+			actionData = wrappingButton.url();
+		}
+	}
+	
 	public TelegramButton(String label) {
 		super(label);
 	}

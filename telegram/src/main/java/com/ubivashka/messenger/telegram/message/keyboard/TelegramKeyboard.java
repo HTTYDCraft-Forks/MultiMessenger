@@ -1,13 +1,28 @@
 package com.ubivashka.messenger.telegram.message.keyboard;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.KeyboardButton;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.ubivashka.messenger.telegram.message.keyboard.button.TelegramButton;
+import com.ubivaska.messenger.common.button.Button;
 import com.ubivaska.messenger.common.keyboard.DefaultKeyboard;
 
 public class TelegramKeyboard extends DefaultKeyboard {
+	public TelegramKeyboard() {
+	}
+
+	public TelegramKeyboard(InlineKeyboardMarkup wrappingKeyboard) {
+		this.buttons = Arrays.stream(wrappingKeyboard.inlineKeyboard())
+				.map(buttonsArray -> Arrays.stream(buttonsArray)
+						.map(button -> new TelegramButton(button).as(Button.class)).collect(Collectors.toList()))
+				.collect(Collectors.toList());
+		this.keyboardType = KeyboardType.inline();
+	}
+
 	public com.pengrad.telegrambot.model.request.Keyboard create() {
 		if (keyboardType.isInline()) {
 			return new InlineKeyboardMarkup(buttons.stream()

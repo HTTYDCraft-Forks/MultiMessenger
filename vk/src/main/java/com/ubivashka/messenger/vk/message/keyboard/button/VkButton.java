@@ -10,6 +10,22 @@ public class VkButton extends DefaultButton {
 	private static final VkButtonAction DEFAULT_ACTION = new VkButtonAction(TemplateActionTypeNames.TEXT);
 	private static final VkButtonColor DEFAULT_COLOR = new VkButtonColor(KeyboardButtonColor.DEFAULT);
 
+	public VkButton(KeyboardButton wrappingButton) {
+		super(wrappingButton.getAction().getLabel());
+		this.action = new VkButtonAction(wrappingButton.getAction().getType());
+		this.color = new VkButtonColor(wrappingButton.getColor());
+		switch(wrappingButton.getAction().getType()) {
+		case CALLBACK:
+			this.actionData = wrappingButton.getAction().getPayload();
+			break;
+		case OPEN_LINK:
+			this.actionData = wrappingButton.getAction().getLink();
+			break;
+		default: 
+			break;			
+		}
+	}
+	
 	public VkButton(String label) {
 		super(label);
 	}
@@ -20,7 +36,7 @@ public class VkButton extends DefaultButton {
 		TemplateActionTypeNames buttonType = action.safeAs(VkButtonAction.class, DEFAULT_ACTION).getButtonActionType();
 		buttonAction.setType(buttonType);
 		if (buttonType == TemplateActionTypeNames.CALLBACK)
-			buttonAction.setPayload("\"" + actionData + "\"");
+			buttonAction.setPayload(actionData);
 		if (buttonType == TemplateActionTypeNames.OPEN_LINK)
 			buttonAction.setLink(actionData);
 		buttonAction.setLabel(label);
