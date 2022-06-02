@@ -27,6 +27,7 @@ public class DefaultKeyboard implements Keyboard {
 	@Override
 	public Keyboard removeIf(Predicate<Button> buttonFilter) {
 		buttons.forEach(buttonsList -> buttonsList.removeIf(buttonFilter));
+		buttons.removeIf(List::isEmpty);
 		return this;
 	}
 
