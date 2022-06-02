@@ -31,14 +31,14 @@ public class TelegramMessage extends DefaultMessage {
 	public void send(Identificator identificator) {
 		if (defaultApiProvider == null)
 			throw new NullPointerException(
-					"Default vk api provider was not defined. Define with static TelegramMessage#setDefaultApiProvider method!");
+					"Default telegram api provider was not defined. Define with static TelegramMessage#setDefaultApiProvider method!");
 		send(identificator, defaultApiProvider);
 	}
 
 	public void send(Identificator identificator, Consumer<SendResponse> responseConsumer) {
 		if (defaultApiProvider == null)
 			throw new NullPointerException(
-					"Default vk api provider was not defined. Define with static TelegramMessage#setDefaultApiProvider method!");
+					"Default telegram api provider was not defined. Define with static TelegramMessage#setDefaultApiProvider method!");
 		send(identificator, defaultApiProvider, responseConsumer);
 	}
 
