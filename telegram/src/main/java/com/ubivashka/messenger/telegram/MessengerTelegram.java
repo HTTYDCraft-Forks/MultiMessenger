@@ -40,6 +40,11 @@ public interface MessengerTelegram extends Messenger {
 		return ButtonColorBuilder.unsupportedBuilder();
 	}
 
+	@Override
+	default String getName() {
+		return "TELEGRAM";
+	}
+
 	static MessengerTelegram getInstance() {
 		return INSTANCE;
 	}

@@ -41,6 +41,11 @@ public interface MessengerVk extends Messenger {
 		return new VkButtonColorBuilder();
 	}
 
+	@Override
+	default String getName() {
+		return "VK";
+	}
+
 	static MessengerVk getInstance() {
 		return INSTANCE;
 	}

@@ -16,4 +16,6 @@ public interface Messenger {
 	ButtonActionBuilder newButtonActionBuilder();
 
 	ButtonColorBuilder newButtonColorBuilder();
+
+	String getName();
 }
