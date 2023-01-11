@@ -12,7 +12,7 @@ import com.ubivaska.messenger.common.keyboard.Keyboard.KeyboardBuilder;
 import com.ubivaska.messenger.common.message.Message.MessageBuilder;
 
 public interface MessengerTelegram extends Messenger {
-	static final MessengerTelegram INSTANCE = new MessengerTelegram() {
+	MessengerTelegram INSTANCE = new MessengerTelegram() {
 	};
 
 	@Override

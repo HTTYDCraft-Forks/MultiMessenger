@@ -13,7 +13,7 @@ import com.ubivaska.messenger.common.keyboard.Keyboard.KeyboardBuilder;
 import com.ubivaska.messenger.common.message.Message.MessageBuilder;
 
 public interface MessengerVk extends Messenger {
-	static final MessengerVk INSTANCE = new MessengerVk() {
+	MessengerVk INSTANCE = new MessengerVk() {
 	};
 
 	@Override
