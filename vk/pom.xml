@@ -1,30 +1,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.ubivashka.messenger</groupId>
-		<artifactId>MultiMessenger</artifactId>
-		<version>0.0.7</version>
-	</parent>
-	<artifactId>vk</artifactId>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ubivashka.messenger</groupId>
+        <artifactId>MultiMessenger</artifactId>
+        <version>0.0.7</version>
+    </parent>
+    <artifactId>vk</artifactId>
 
-	<properties>
-		<vk-java-sdk.version>1.0.14</vk-java-sdk.version>
-	</properties>
+    <properties>
+        <vk-java-sdk.version>1.0.14</vk-java-sdk.version>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.ubivashka.messenger</groupId>
-			<artifactId>common</artifactId>
-			<version>${core.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.vk.api</groupId>
-			<artifactId>sdk</artifactId>
-			<version>${vk-java-sdk.version}</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>com.ubivashka.messenger</groupId>
+            <artifactId>common</artifactId>
+            <version>${core.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.vk.api</groupId>
+            <artifactId>sdk</artifactId>
+            <version>${vk-java-sdk.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

@@ -13,109 +13,108 @@ import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.request.SendPhoto;
 import com.pengrad.telegrambot.request.SendVideo;
 import com.pengrad.telegrambot.response.SendResponse;
-import com.ubivashka.messenger.telegram.message.keyboard.TelegramKeyboard;
-import com.ubivashka.messenger.telegram.providers.TelegramApiProvider;
 import com.ubivashka.messenger.common.ApiProvider;
 import com.ubivashka.messenger.common.file.MessengerFile;
 import com.ubivashka.messenger.common.identificator.Identificator;
 import com.ubivashka.messenger.common.message.DefaultMessage;
+import com.ubivashka.messenger.telegram.message.keyboard.TelegramKeyboard;
+import com.ubivashka.messenger.telegram.providers.TelegramApiProvider;
 
 public class TelegramMessage extends DefaultMessage {
-	private static TelegramApiProvider defaultApiProvider;
+    private static TelegramApiProvider defaultApiProvider;
 
-	public TelegramMessage(String text) {
-		super(text);
-	}
+    public TelegramMessage(String text) {
+        super(text);
+    }
 
-	@Override
-	public void send(Identificator identificator) {
-		if (defaultApiProvider == null)
-			throw new NullPointerException(
-					"Default telegram api provider was not defined. Define with static TelegramMessage#setDefaultApiProvider method!");
-		send(identificator, defaultApiProvider);
-	}
+    @Override
+    public void send(Identificator identificator) {
+        if (defaultApiProvider == null)
+            throw new NullPointerException(
+                    "Default telegram api provider was not defined. Define with static TelegramMessage#setDefaultApiProvider method!");
+        send(identificator, defaultApiProvider);
+    }
 
-	public void send(Identificator identificator, Consumer<SendResponse> responseConsumer) {
-		if (defaultApiProvider == null)
-			throw new NullPointerException(
-					"Default telegram api provider was not defined. Define with static TelegramMessage#setDefaultApiProvider method!");
-		send(identificator, defaultApiProvider, responseConsumer);
-	}
+    public void send(Identificator identificator, Consumer<SendResponse> responseConsumer) {
+        if (defaultApiProvider == null)
+            throw new NullPointerException(
+                    "Default telegram api provider was not defined. Define with static TelegramMessage#setDefaultApiProvider method!");
+        send(identificator, defaultApiProvider, responseConsumer);
+    }
 
-	@Override
-	public void send(Identificator identificator, ApiProvider apiProvider) {
-		SendMessage sendMessage = new SendMessage(identificator.asObject(), text);
-		if (keyboard != null && keyboard.safeAs(TelegramKeyboard.class).isPresent())
-			sendMessage.replyMarkup(keyboard.as(TelegramKeyboard.class).create());
-		if (replyIdentificator != null && replyIdentificator.isNumber())
-			sendMessage.replyToMessageId((int) replyIdentificator.asNumber());
-		apiProvider.as(TelegramApiProvider.class).getBot().execute(sendMessage);
-		if (files != null && files.length != 0)
-			toEntities(identificator, files)
-					.forEach(request -> apiProvider.as(TelegramApiProvider.class).getBot().execute(request));
-	}
+    @Override
+    public void send(Identificator identificator, ApiProvider apiProvider) {
+        SendMessage sendMessage = new SendMessage(identificator.asObject(), text);
+        if (keyboard != null && keyboard.safeAs(TelegramKeyboard.class).isPresent())
+            sendMessage.replyMarkup(keyboard.as(TelegramKeyboard.class).create());
+        if (replyIdentificator != null && replyIdentificator.isNumber())
+            sendMessage.replyToMessageId((int) replyIdentificator.asNumber());
+        apiProvider.as(TelegramApiProvider.class).getBot().execute(sendMessage);
+        if (files != null && files.length != 0)
+            toEntities(identificator, files)
+                    .forEach(request -> apiProvider.as(TelegramApiProvider.class).getBot().execute(request));
+    }
 
-	public void send(Identificator identificator, ApiProvider apiProvider, Consumer<SendResponse> responseConsumer) {
-		SendMessage sendMessage = new SendMessage(identificator.asObject(), text);
-		if (keyboard != null && keyboard.safeAs(TelegramKeyboard.class).isPresent())
-			sendMessage.replyMarkup(keyboard.as(TelegramKeyboard.class).create());
-		if (replyIdentificator != null && replyIdentificator.isNumber())
-			sendMessage.replyToMessageId((int) replyIdentificator.asNumber());
-		apiProvider.as(TelegramApiProvider.class).getBot().execute(sendMessage,
-				new Callback<SendMessage, SendResponse>() {
-					@Override
-					public void onResponse(SendMessage request, SendResponse response) {
-						responseConsumer.accept(response);
-					}
+    public void send(Identificator identificator, ApiProvider apiProvider, Consumer<SendResponse> responseConsumer) {
+        SendMessage sendMessage = new SendMessage(identificator.asObject(), text);
+        if (keyboard != null && keyboard.safeAs(TelegramKeyboard.class).isPresent())
+            sendMessage.replyMarkup(keyboard.as(TelegramKeyboard.class).create());
+        if (replyIdentificator != null && replyIdentificator.isNumber())
+            sendMessage.replyToMessageId((int) replyIdentificator.asNumber());
+        apiProvider.as(TelegramApiProvider.class).getBot().execute(sendMessage,
+                new Callback<SendMessage, SendResponse>() {
+                    @Override
+                    public void onResponse(SendMessage request, SendResponse response) {
+                        responseConsumer.accept(response);
+                    }
 
-					@Override
-					public void onFailure(SendMessage request, IOException e) {
-					}
-				});
-		if (files != null && files.length != 0)
-			toEntities(identificator, files)
-					.forEach(request -> apiProvider.as(TelegramApiProvider.class).getBot().execute(request));
-	}
+                    @Override
+                    public void onFailure(SendMessage request, IOException e) {
+                    }
+                });
+        if (files != null && files.length != 0)
+            toEntities(identificator, files)
+                    .forEach(request -> apiProvider.as(TelegramApiProvider.class).getBot().execute(request));
+    }
 
-	private List<BaseRequest<?, ?>> toEntities(Identificator identificator, MessengerFile... files) {
-		List<BaseRequest<?, ?>> requests = new ArrayList<>();
-		for (MessengerFile file : files) {
-			BaseRequest<?, ?> request = toRequest(identificator, file);
-			if (request != null)
-				requests.add(request);
-		}
-		return requests;
-	}
+    private List<BaseRequest<?, ?>> toEntities(Identificator identificator, MessengerFile... files) {
+        List<BaseRequest<?, ?>> requests = new ArrayList<>();
+        for (MessengerFile file : files) {
+            BaseRequest<?, ?> request = toRequest(identificator, file);
+            if (request != null)
+                requests.add(request);
+        }
+        return requests;
+    }
 
-	public static TelegramApiProvider getDefaultApiProvider() {
-		return defaultApiProvider;
-	}
+    public static TelegramApiProvider getDefaultApiProvider() {
+        return defaultApiProvider;
+    }
 
-	public static void setDefaultApiProvider(TelegramApiProvider defaultApiProvider) {
-		TelegramMessage.defaultApiProvider = defaultApiProvider;
-	}
+    public static void setDefaultApiProvider(TelegramApiProvider defaultApiProvider) {
+        TelegramMessage.defaultApiProvider = defaultApiProvider;
+    }
 
-	private BaseRequest<?, ?> toRequest(Identificator identificator, MessengerFile file) {
-		switch (file.getFileType()) {
-		case AUDIO:
-			return new SendAudio(identificator.asObject(), file.getFile());
-		case DOCUMENT:
-			return new SendDocument(identificator.asObject(), file.getFile());
-		case PHOTO:
-			return new SendPhoto(identificator.asObject(), file.getFile());
-		case VIDEO:
-			return new SendVideo(identificator.asObject(), file.getFile());
-		case OTHER:
-		default:
-			break;
+    private BaseRequest<?, ?> toRequest(Identificator identificator, MessengerFile file) {
+        switch (file.getFileType()) {
+            case AUDIO:
+                return new SendAudio(identificator.asObject(), file.getFile());
+            case DOCUMENT:
+                return new SendDocument(identificator.asObject(), file.getFile());
+            case PHOTO:
+                return new SendPhoto(identificator.asObject(), file.getFile());
+            case VIDEO:
+                return new SendVideo(identificator.asObject(), file.getFile());
+            case OTHER:
+            default:
+                break;
+        }
+        return null;
+    }
 
-		}
-		return null;
-	}
-
-	public class TelegramMessageBuilder extends DefaultMessageBuilder {
-		public TelegramMessageBuilder() {
-			super(TelegramMessage.this);
-		}
-	}
+    public class TelegramMessageBuilder extends DefaultMessageBuilder {
+        public TelegramMessageBuilder() {
+            super(TelegramMessage.this);
+        }
+    }
 }

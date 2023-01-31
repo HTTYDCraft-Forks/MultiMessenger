@@ -7,15 +7,15 @@ import com.ubivashka.messenger.common.keyboard.Keyboard.KeyboardBuilder;
 import com.ubivashka.messenger.common.message.Message.MessageBuilder;
 
 public interface Messenger {
-	MessageBuilder newMessageBuilder(String text);
+    MessageBuilder newMessageBuilder(String text);
 
-	ButtonBuilder newButtonBuilder(String label);
+    ButtonBuilder newButtonBuilder(String label);
 
-	KeyboardBuilder newKeyboardBuilder();
+    KeyboardBuilder newKeyboardBuilder();
 
-	ButtonActionBuilder newButtonActionBuilder();
+    ButtonActionBuilder newButtonActionBuilder();
 
-	ButtonColorBuilder newButtonColorBuilder();
+    ButtonColorBuilder newButtonColorBuilder();
 
-	String getName();
+    String getName();
 }

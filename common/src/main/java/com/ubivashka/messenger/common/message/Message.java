@@ -7,32 +7,32 @@ import com.ubivashka.messenger.common.identificator.Identificator;
 import com.ubivashka.messenger.common.keyboard.Keyboard;
 
 public interface Message extends Castable<Message> {
-	/**
-	 * Returns only message text.
-	 * 
-	 * @return message text.
-	 */
-	String getText();
+    /**
+     * Returns only message text.
+     *
+     * @return message text.
+     */
+    String getText();
 
-	Keyboard getKeyboard();
+    Keyboard getKeyboard();
 
-	Message attachFiles(MessengerFile... files);
+    Message attachFiles(MessengerFile... files);
 
-	Message reply(Identificator messageIdentificator);
+    Message reply(Identificator messageIdentificator);
 
-	void send(Identificator identificator);	
+    void send(Identificator identificator);
 
-	void send(Identificator identificator, ApiProvider apiProvider);
+    void send(Identificator identificator, ApiProvider apiProvider);
 
-	public interface MessageBuilder {
-		MessageBuilder keyboard(Keyboard keyboard);
+    interface MessageBuilder {
+        MessageBuilder keyboard(Keyboard keyboard);
 
-		MessageBuilder text(String text);
+        MessageBuilder text(String text);
 
-		MessageBuilder reply(Identificator messageIdentificator);
+        MessageBuilder reply(Identificator messageIdentificator);
 
-		MessageBuilder attachFiles(MessengerFile... files);
+        MessageBuilder attachFiles(MessengerFile... files);
 
-		Message build();
-	}
+        Message build();
+    }
 }

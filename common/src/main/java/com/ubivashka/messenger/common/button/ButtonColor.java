@@ -3,49 +3,49 @@ package com.ubivashka.messenger.common.button;
 import com.ubivashka.functions.Castable;
 
 public interface ButtonColor extends Castable<ButtonColor> {
-	public interface ButtonColorBuilder {
-		ButtonColor red();
+    interface ButtonColorBuilder {
+        ButtonColor red();
 
-		ButtonColor blue();
+        ButtonColor blue();
 
-		ButtonColor green();
+        ButtonColor green();
 
-		ButtonColor white();
+        ButtonColor white();
 
-		ButtonColor grey();
+        ButtonColor grey();
 
-		static ButtonColorBuilder unsupportedBuilder() {
-			return new ButtonColorBuilder() {
-				@Override
-				public ButtonColor white() {
-					return empty();
-				}
+        static ButtonColorBuilder unsupportedBuilder() {
+            return new ButtonColorBuilder() {
+                @Override
+                public ButtonColor white() {
+                    return empty();
+                }
 
-				@Override
-				public ButtonColor red() {
-					return empty();
-				}
+                @Override
+                public ButtonColor red() {
+                    return empty();
+                }
 
-				@Override
-				public ButtonColor grey() {
-					return empty();
-				}
+                @Override
+                public ButtonColor grey() {
+                    return empty();
+                }
 
-				@Override
-				public ButtonColor green() {
-					return empty();
-				}
+                @Override
+                public ButtonColor green() {
+                    return empty();
+                }
 
-				@Override
-				public ButtonColor blue() {
-					return empty();
-				}
+                @Override
+                public ButtonColor blue() {
+                    return empty();
+                }
 
-				private ButtonColor empty() {
-					return new ButtonColor() {
-					};
-				}
-			};
-		}
-	}
+                private ButtonColor empty() {
+                    return new ButtonColor() {
+                    };
+                }
+            };
+        }
+    }
 }
