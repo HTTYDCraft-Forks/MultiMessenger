@@ -5,12 +5,12 @@ import com.ubivashka.messenger.vk.message.keyboard.VkKeyboard;
 import com.ubivashka.messenger.vk.message.keyboard.button.VkButton;
 import com.ubivashka.messenger.vk.message.keyboard.button.VkButtonAction.VkButtonActionBuilder;
 import com.ubivashka.messenger.vk.message.keyboard.button.VkButtonColor.VkButtonColorBuilder;
-import com.ubivaska.messenger.common.Messenger;
-import com.ubivaska.messenger.common.button.Button.ButtonBuilder;
-import com.ubivaska.messenger.common.button.ButtonAction.ButtonActionBuilder;
-import com.ubivaska.messenger.common.button.ButtonColor.ButtonColorBuilder;
-import com.ubivaska.messenger.common.keyboard.Keyboard.KeyboardBuilder;
-import com.ubivaska.messenger.common.message.Message.MessageBuilder;
+import com.ubivashka.messenger.common.Messenger;
+import com.ubivashka.messenger.common.button.Button.ButtonBuilder;
+import com.ubivashka.messenger.common.button.ButtonAction.ButtonActionBuilder;
+import com.ubivashka.messenger.common.button.ButtonColor.ButtonColorBuilder;
+import com.ubivashka.messenger.common.keyboard.Keyboard.KeyboardBuilder;
+import com.ubivashka.messenger.common.message.Message.MessageBuilder;
 
 public interface MessengerVk extends Messenger {
 	MessengerVk INSTANCE = new MessengerVk() {

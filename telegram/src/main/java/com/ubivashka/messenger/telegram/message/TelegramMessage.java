@@ -15,10 +15,10 @@ import com.pengrad.telegrambot.request.SendVideo;
 import com.pengrad.telegrambot.response.SendResponse;
 import com.ubivashka.messenger.telegram.message.keyboard.TelegramKeyboard;
 import com.ubivashka.messenger.telegram.providers.TelegramApiProvider;
-import com.ubivaska.messenger.common.ApiProvider;
-import com.ubivaska.messenger.common.file.MessengerFile;
-import com.ubivaska.messenger.common.identificator.Identificator;
-import com.ubivaska.messenger.common.message.DefaultMessage;
+import com.ubivashka.messenger.common.ApiProvider;
+import com.ubivashka.messenger.common.file.MessengerFile;
+import com.ubivashka.messenger.common.identificator.Identificator;
+import com.ubivashka.messenger.common.message.DefaultMessage;
 
 public class TelegramMessage extends DefaultMessage {
 	private static TelegramApiProvider defaultApiProvider;

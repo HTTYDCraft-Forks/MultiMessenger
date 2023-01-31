@@ -3,7 +3,7 @@ package com.ubivashka.messenger.telegram.message.keyboard.button;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.KeyboardButton;
 import com.ubivashka.messenger.telegram.message.keyboard.button.TelegramButtonAction.TelegramButtonType;
-import com.ubivaska.messenger.common.button.DefaultButton;
+import com.ubivashka.messenger.common.button.DefaultButton;
 
 public class TelegramButton extends DefaultButton {
 	private static final TelegramButtonAction DEFAULT_ACTION = new TelegramButtonAction(TelegramButtonType.REPLY);

@@ -1,7 +1,7 @@
 package com.ubivashka.messenger.telegram.providers;
 
 import com.pengrad.telegrambot.TelegramBot;
-import com.ubivaska.messenger.common.ApiProvider;
+import com.ubivashka.messenger.common.ApiProvider;
 
 public interface TelegramApiProvider extends ApiProvider{
 	TelegramBot getBot();

@@ -4,11 +4,11 @@ import java.util.StringJoiner;
 
 import com.ubivashka.messenger.vk.message.keyboard.VkKeyboard;
 import com.ubivashka.messenger.vk.provider.VkApiProvider;
-import com.ubivaska.messenger.common.ApiProvider;
-import com.ubivaska.messenger.common.file.FileType;
-import com.ubivaska.messenger.common.file.MessengerFile;
-import com.ubivaska.messenger.common.identificator.Identificator;
-import com.ubivaska.messenger.common.message.DefaultMessage;
+import com.ubivashka.messenger.common.ApiProvider;
+import com.ubivashka.messenger.common.file.FileType;
+import com.ubivashka.messenger.common.file.MessengerFile;
+import com.ubivashka.messenger.common.identificator.Identificator;
+import com.ubivashka.messenger.common.message.DefaultMessage;
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.objects.photos.responses.PhotoUploadResponse;

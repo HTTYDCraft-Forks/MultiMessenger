@@ -4,12 +4,12 @@ import com.ubivashka.messenger.telegram.message.TelegramMessage;
 import com.ubivashka.messenger.telegram.message.keyboard.TelegramKeyboard;
 import com.ubivashka.messenger.telegram.message.keyboard.button.TelegramButton;
 import com.ubivashka.messenger.telegram.message.keyboard.button.TelegramButtonAction.TelegramButtonActionBuilder;
-import com.ubivaska.messenger.common.Messenger;
-import com.ubivaska.messenger.common.button.Button.ButtonBuilder;
-import com.ubivaska.messenger.common.button.ButtonAction.ButtonActionBuilder;
-import com.ubivaska.messenger.common.button.ButtonColor.ButtonColorBuilder;
-import com.ubivaska.messenger.common.keyboard.Keyboard.KeyboardBuilder;
-import com.ubivaska.messenger.common.message.Message.MessageBuilder;
+import com.ubivashka.messenger.common.Messenger;
+import com.ubivashka.messenger.common.button.Button.ButtonBuilder;
+import com.ubivashka.messenger.common.button.ButtonAction.ButtonActionBuilder;
+import com.ubivashka.messenger.common.button.ButtonColor.ButtonColorBuilder;
+import com.ubivashka.messenger.common.keyboard.Keyboard.KeyboardBuilder;
+import com.ubivashka.messenger.common.message.Message.MessageBuilder;
 
 public interface MessengerTelegram extends Messenger {
 	MessengerTelegram INSTANCE = new MessengerTelegram() {

@@ -1,4 +1,4 @@
-package com.ubivaska.messenger.common.file;
+package com.ubivashka.messenger.common.file;
 
 import java.io.File;
 

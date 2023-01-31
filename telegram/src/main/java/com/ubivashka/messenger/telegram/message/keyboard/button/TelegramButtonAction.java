@@ -1,6 +1,6 @@
 package com.ubivashka.messenger.telegram.message.keyboard.button;
 
-import com.ubivaska.messenger.common.button.ButtonAction;
+import com.ubivashka.messenger.common.button.ButtonAction;
 
 public class TelegramButtonAction implements ButtonAction {
 	private final TelegramButtonType buttonType;

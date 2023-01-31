@@ -4,8 +4,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.ubivashka.messenger.vk.message.keyboard.button.VkButton;
-import com.ubivaska.messenger.common.button.Button;
-import com.ubivaska.messenger.common.keyboard.DefaultKeyboard;
+import com.ubivashka.messenger.common.button.Button;
+import com.ubivashka.messenger.common.keyboard.DefaultKeyboard;
 
 public class VkKeyboard extends DefaultKeyboard {
 	public VkKeyboard() {

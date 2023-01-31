@@ -1,6 +1,6 @@
 package com.ubivashka.messenger.vk.message.keyboard.button;
 
-import com.ubivaska.messenger.common.button.DefaultButton;
+import com.ubivashka.messenger.common.button.DefaultButton;
 import com.vk.api.sdk.objects.messages.KeyboardButton;
 import com.vk.api.sdk.objects.messages.KeyboardButtonAction;
 import com.vk.api.sdk.objects.messages.KeyboardButtonColor;

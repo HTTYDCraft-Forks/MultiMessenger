@@ -8,8 +8,8 @@ import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.KeyboardButton;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.ubivashka.messenger.telegram.message.keyboard.button.TelegramButton;
-import com.ubivaska.messenger.common.button.Button;
-import com.ubivaska.messenger.common.keyboard.DefaultKeyboard;
+import com.ubivashka.messenger.common.button.Button;
+import com.ubivashka.messenger.common.keyboard.DefaultKeyboard;
 
 public class TelegramKeyboard extends DefaultKeyboard {
 	public TelegramKeyboard() {

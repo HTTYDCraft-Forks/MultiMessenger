@@ -1,6 +1,6 @@
 package com.ubivashka.messenger.vk.message.keyboard.button;
 
-import com.ubivaska.messenger.common.button.ButtonColor;
+import com.ubivashka.messenger.common.button.ButtonColor;
 import com.vk.api.sdk.objects.messages.KeyboardButtonColor;
 
 public class VkButtonColor implements ButtonColor {

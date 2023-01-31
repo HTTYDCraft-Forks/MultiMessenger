@@ -1,4 +1,4 @@
-package com.ubivaska.messenger.common;
+package com.ubivashka.messenger.common;
 
 import com.ubivashka.functions.Castable;
 

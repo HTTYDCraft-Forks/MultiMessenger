@@ -1,6 +1,6 @@
 package com.ubivashka.messenger.vk.provider;
 
-import com.ubivaska.messenger.common.ApiProvider;
+import com.ubivashka.messenger.common.ApiProvider;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.GroupActor;
 

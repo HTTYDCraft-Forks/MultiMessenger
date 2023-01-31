@@ -1,6 +1,6 @@
 package com.ubivashka.messenger.vk.message.keyboard.button;
 
-import com.ubivaska.messenger.common.button.ButtonAction;
+import com.ubivashka.messenger.common.button.ButtonAction;
 import com.vk.api.sdk.objects.messages.TemplateActionTypeNames;
 
 public class VkButtonAction implements ButtonAction {
