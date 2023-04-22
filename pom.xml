@@ -2,7 +2,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.ubivashka.messenger</groupId>
+    <groupId>com.bivashy.messenger</groupId>
     <artifactId>MultiMessenger</artifactId>
     <version>0.0.7</version>
     <packaging>pom</packaging>
@@ -10,12 +10,11 @@
     <properties>
         <!-- Manifest -->
         <manifest.contact>https://vk.me/bbaty45/</manifest.contact>
-        <manifest.developer>Ubivashka</manifest.developer>
+        <manifest.developer>bivashy</manifest.developer>
         <manifest.version>${project.version}</manifest.version>
 
         <!-- Plugin properties -->
         <java.version>8</java.version>
-        <project.mainclass>com.ubivashka.messenger.common.Messenger</project.mainclass>
 
         <!-- Dependencies -->
         <core.version>${project.version}</core.version>
@@ -51,7 +50,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>${project.mainclass}</mainClass>
+                            <mainClass/>
                         </manifest>
                     </archive>
                     <descriptorRefs>
