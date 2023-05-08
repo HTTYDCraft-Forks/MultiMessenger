@@ -41,9 +41,9 @@ public class TelegramKeyboard extends DefaultKeyboard {
         return null;
     }
 
-    public class TelegramKeyboardBuilder extends DefaultKeyboardBuilder {
-        public TelegramKeyboardBuilder() {
-            super(TelegramKeyboard.this);
+    public static class Builder extends DefaultKeyboardBuilder {
+        public Builder() {
+            super(new TelegramKeyboard());
         }
     }
 }

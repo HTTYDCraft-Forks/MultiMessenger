@@ -106,9 +106,9 @@ public class TelegramMessage extends DefaultMessage {
         return null;
     }
 
-    public class TelegramMessageBuilder extends DefaultMessageBuilder {
-        public TelegramMessageBuilder() {
-            super(TelegramMessage.this);
+    public static class Builder extends DefaultMessageBuilder {
+        public Builder(String text) {
+            super(new TelegramMessage(text));
         }
     }
 }

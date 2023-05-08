@@ -14,7 +14,7 @@ public class VkButtonAction implements ButtonAction {
         return buttonActionType;
     }
 
-    public static class VkButtonActionBuilder implements ButtonActionBuilder {
+    public static class Builder implements ButtonActionBuilder {
         @Override
         public ButtonAction reply() {
             return new VkButtonAction(TemplateActionTypeNames.TEXT);

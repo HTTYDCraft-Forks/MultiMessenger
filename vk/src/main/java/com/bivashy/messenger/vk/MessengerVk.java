@@ -9,44 +9,44 @@ import com.bivashy.messenger.common.message.Message.MessageBuilder;
 import com.bivashy.messenger.vk.message.VkMessage;
 import com.bivashy.messenger.vk.message.keyboard.VkKeyboard;
 import com.bivashy.messenger.vk.message.keyboard.button.VkButton;
-import com.bivashy.messenger.vk.message.keyboard.button.VkButtonAction.VkButtonActionBuilder;
-import com.bivashy.messenger.vk.message.keyboard.button.VkButtonColor.VkButtonColorBuilder;
+import com.bivashy.messenger.vk.message.keyboard.button.VkButtonAction;
+import com.bivashy.messenger.vk.message.keyboard.button.VkButtonColor;
 
 public interface MessengerVk extends Messenger {
     MessengerVk INSTANCE = new MessengerVk() {
     };
 
+    static MessengerVk getInstance() {
+        return INSTANCE;
+    }
+
     @Override
     default MessageBuilder newMessageBuilder(String text) {
-        return new VkMessage(text).new VkMessageBuilder();
+        return new VkMessage.Builder(text);
     }
 
     @Override
     default ButtonBuilder newButtonBuilder(String label) {
-        return new VkButton(label).new VkButtonBuilder();
+        return new VkButton.Builder(label);
     }
 
     @Override
     default KeyboardBuilder newKeyboardBuilder() {
-        return new VkKeyboard().new VkKeyboardBuilder();
+        return new VkKeyboard.Builder();
     }
 
     @Override
     default ButtonActionBuilder newButtonActionBuilder() {
-        return new VkButtonActionBuilder();
+        return new VkButtonAction.Builder();
     }
 
     @Override
     default ButtonColorBuilder newButtonColorBuilder() {
-        return new VkButtonColorBuilder();
+        return new VkButtonColor.Builder();
     }
 
     @Override
     default String getName() {
         return "VK";
-    }
-
-    static MessengerVk getInstance() {
-        return INSTANCE;
     }
 }

@@ -44,9 +44,9 @@ public class TelegramButton extends DefaultButton {
         return new KeyboardButton(label);
     }
 
-    public class TelegramButtonBuilder extends DefaultButtonBuilder {
-        public TelegramButtonBuilder() {
-            super(TelegramButton.this);
+    public static class Builder extends DefaultButtonBuilder {
+        public Builder(String label) {
+            super(new TelegramButton(label));
         }
     }
 }

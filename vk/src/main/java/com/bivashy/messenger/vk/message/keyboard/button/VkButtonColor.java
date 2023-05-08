@@ -14,7 +14,7 @@ public class VkButtonColor implements ButtonColor {
         return buttonColor;
     }
 
-    public static class VkButtonColorBuilder implements ButtonColorBuilder {
+    public static class Builder implements ButtonColorBuilder {
         @Override
         public ButtonColor red() {
             return new VkButtonColor(KeyboardButtonColor.NEGATIVE);

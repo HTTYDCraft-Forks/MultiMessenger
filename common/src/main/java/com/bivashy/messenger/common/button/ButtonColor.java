@@ -4,16 +4,6 @@ import com.bivashy.messenger.common.function.Castable;
 
 public interface ButtonColor extends Castable<ButtonColor> {
     interface ButtonColorBuilder {
-        ButtonColor red();
-
-        ButtonColor blue();
-
-        ButtonColor green();
-
-        ButtonColor white();
-
-        ButtonColor grey();
-
         static ButtonColorBuilder unsupportedBuilder() {
             return new ButtonColorBuilder() {
                 @Override
@@ -47,5 +37,15 @@ public interface ButtonColor extends Castable<ButtonColor> {
                 }
             };
         }
+
+        ButtonColor red();
+
+        ButtonColor blue();
+
+        ButtonColor green();
+
+        ButtonColor white();
+
+        ButtonColor grey();
     }
 }

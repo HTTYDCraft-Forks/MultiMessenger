@@ -89,9 +89,9 @@ public class VkMessage extends DefaultMessage {
         VkMessage.defaultApiProvider = defaultApiProvider;
     }
 
-    public class VkMessageBuilder extends DefaultMessageBuilder {
-        public VkMessageBuilder() {
-            super(VkMessage.this);
+    public static class Builder extends DefaultMessageBuilder {
+        public Builder(String text) {
+            super(new VkMessage(text));
         }
     }
 }

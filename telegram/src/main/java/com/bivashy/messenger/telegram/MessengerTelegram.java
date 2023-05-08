@@ -9,30 +9,34 @@ import com.bivashy.messenger.common.message.Message.MessageBuilder;
 import com.bivashy.messenger.telegram.message.TelegramMessage;
 import com.bivashy.messenger.telegram.message.keyboard.TelegramKeyboard;
 import com.bivashy.messenger.telegram.message.keyboard.button.TelegramButton;
-import com.bivashy.messenger.telegram.message.keyboard.button.TelegramButtonAction.TelegramButtonActionBuilder;
+import com.bivashy.messenger.telegram.message.keyboard.button.TelegramButtonAction;
 
 public interface MessengerTelegram extends Messenger {
     MessengerTelegram INSTANCE = new MessengerTelegram() {
     };
 
+    static MessengerTelegram getInstance() {
+        return INSTANCE;
+    }
+
     @Override
     default MessageBuilder newMessageBuilder(String text) {
-        return new TelegramMessage(text).new TelegramMessageBuilder();
+        return new TelegramMessage.Builder(text);
     }
 
     @Override
     default ButtonBuilder newButtonBuilder(String label) {
-        return new TelegramButton(label).new TelegramButtonBuilder();
+        return new TelegramButton.Builder(label);
     }
 
     @Override
     default KeyboardBuilder newKeyboardBuilder() {
-        return new TelegramKeyboard().new TelegramKeyboardBuilder();
+        return new TelegramKeyboard.Builder();
     }
 
     @Override
     default ButtonActionBuilder newButtonActionBuilder() {
-        return new TelegramButtonActionBuilder();
+        return new TelegramButtonAction.Builder();
     }
 
     @Override
@@ -43,9 +47,5 @@ public interface MessengerTelegram extends Messenger {
     @Override
     default String getName() {
         return "TELEGRAM";
-    }
-
-    static MessengerTelegram getInstance() {
-        return INSTANCE;
     }
 }

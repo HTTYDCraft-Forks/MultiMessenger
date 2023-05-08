@@ -46,9 +46,9 @@ public class VkButton extends DefaultButton {
         return keyboardButton;
     }
 
-    public class VkButtonBuilder extends DefaultButtonBuilder {
-        public VkButtonBuilder() {
-            super(VkButton.this);
+    public static class Builder extends DefaultButtonBuilder {
+        public Builder(String label) {
+            super(new VkButton(label));
         }
     }
 }

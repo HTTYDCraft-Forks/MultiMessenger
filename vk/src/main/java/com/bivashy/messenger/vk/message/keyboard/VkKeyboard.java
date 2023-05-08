@@ -28,9 +28,9 @@ public class VkKeyboard extends DefaultKeyboard {
         return keyboard;
     }
 
-    public class VkKeyboardBuilder extends DefaultKeyboardBuilder {
-        public VkKeyboardBuilder() {
-            super(VkKeyboard.this);
+    public static class Builder extends DefaultKeyboardBuilder {
+        public Builder() {
+            super(new VkKeyboard());
         }
     }
 }

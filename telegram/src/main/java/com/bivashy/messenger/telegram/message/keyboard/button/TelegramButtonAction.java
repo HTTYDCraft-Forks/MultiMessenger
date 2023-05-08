@@ -13,7 +13,10 @@ public class TelegramButtonAction implements ButtonAction {
         return buttonType;
     }
 
-    public static class TelegramButtonActionBuilder implements ButtonActionBuilder {
+    public enum TelegramButtonType {
+        REPLY, CALLBACK, OPEN_LINK
+    }
+    public static class Builder implements ButtonActionBuilder {
         @Override
         public ButtonAction callback() {
             return new TelegramButtonAction(TelegramButtonType.CALLBACK);
@@ -28,8 +31,5 @@ public class TelegramButtonAction implements ButtonAction {
         public ButtonAction reply() {
             return new TelegramButtonAction(TelegramButtonType.REPLY);
         }
-    }
-    public enum TelegramButtonType {
-        REPLY, CALLBACK, OPEN_LINK
     }
 }
