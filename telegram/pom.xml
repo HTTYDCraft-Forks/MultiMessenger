@@ -10,7 +10,7 @@
     <artifactId>telegram</artifactId>
 
     <properties>
-        <java-telegram-bot-api.version>6.0.1</java-telegram-bot-api.version>
+        <java-telegram-bot-api.version>6.5.0</java-telegram-bot-api.version>
     </properties>
 
     <dependencies>
