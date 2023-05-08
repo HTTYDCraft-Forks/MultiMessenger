@@ -19,7 +19,7 @@ public class VkKeyboard extends DefaultKeyboard {
         this.keyboardType = Optional.ofNullable(wrappingKeyboard.getInline()).orElse(false) ? KeyboardType.inline() : KeyboardType.reply();
     }
 
-    public com.vk.api.sdk.objects.messages.Keyboard build() {
+    public com.vk.api.sdk.objects.messages.Keyboard create() {
         com.vk.api.sdk.objects.messages.Keyboard keyboard = new com.vk.api.sdk.objects.messages.Keyboard();
         keyboard.setButtons(buttons.stream().map(listButtons -> listButtons.stream()
                         .map(button -> button.as(VkButton.class).create()).collect(Collectors.toList()))

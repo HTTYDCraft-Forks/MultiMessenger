@@ -40,7 +40,7 @@ public class VkMessage extends DefaultMessage {
         MessagesSendQuery sendQuery = vkApiProvider.getClient().messages().send(vkApiProvider.getActor())
                 .peerId((int) identificator.asNumber()).randomId(ThreadLocalRandom.current().nextInt()).message(text);
         if (keyboard != null && keyboard.safeAs(VkKeyboard.class).isPresent())
-            sendQuery.keyboard(keyboard.as(VkKeyboard.class).build());
+            sendQuery.keyboard(keyboard.as(VkKeyboard.class).create());
         if (replyIdentificator != null && replyIdentificator.isNumber())
             sendQuery.replyTo((int) replyIdentificator.asNumber());
         if (files != null && files.length != 0)
