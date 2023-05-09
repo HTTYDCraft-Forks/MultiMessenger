@@ -1,6 +1,7 @@
 package com.bivashy.messenger.discord.message;
 
 import java.util.Arrays;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import com.bivashy.messenger.common.ApiProvider;
@@ -12,6 +13,7 @@ import com.bivashy.messenger.discord.provider.DiscordApiProvider;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
+import net.dv8tion.jda.api.interactions.callbacks.IReplyCallback;
 import net.dv8tion.jda.api.utils.FileUpload;
 import net.dv8tion.jda.api.utils.messages.MessageCreateBuilder;
 
@@ -47,12 +49,24 @@ public class DiscordMessage extends DefaultMessage {
             channel = jda.getChannelById(MessageChannel.class, identificator.asString());
         if (channel == null)
             return;
+        send(channel);
+    }
+
+    public void send(MessageChannel channel) {
+        send(builder -> channel.sendMessage(builder.build()).queue());
+    }
+
+    public void send(IReplyCallback reply) {
+        send(builder -> reply.reply(builder.build()).queue());
+    }
+
+    public void send(Consumer<MessageCreateBuilder> consumer) {
         MessageCreateBuilder messageCreateBuilder = new MessageCreateBuilder().setContent(text);
         if (files != null)
             messageCreateBuilder.setFiles(Arrays.stream(files).map(MessengerFile::getFile).map(FileUpload::fromData).collect(Collectors.toList()));
         if (keyboard != null)
             keyboard.as(DiscordKeyboard.class).create().forEach(actionRow -> messageCreateBuilder.addActionRow(actionRow.getComponents()));
-        channel.sendMessage(messageCreateBuilder.build()).queue();
+        consumer.accept(messageCreateBuilder);
     }
 
     public static class Builder extends DefaultMessageBuilder {
