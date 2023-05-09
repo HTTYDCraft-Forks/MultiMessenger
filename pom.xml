@@ -28,6 +28,7 @@
         <module>common</module>
         <module>vk</module>
         <module>telegram</module>
+        <module>discord</module>
     </modules>
 
     <build>
