@@ -16,6 +16,11 @@ public class DiscordButtonColor implements ButtonColor {
         return style;
     }
 
+    @Override
+    public String asJsonValue() {
+        return Integer.toString(style.getKey());
+    }
+
     public Button create(String componentId, String label) {
         return Button.of(style, componentId, label);
     }

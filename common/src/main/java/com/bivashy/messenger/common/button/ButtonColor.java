@@ -3,6 +3,8 @@ package com.bivashy.messenger.common.button;
 import com.bivashy.messenger.common.function.Castable;
 
 public interface ButtonColor extends Castable<ButtonColor> {
+    String asJsonValue();
+
     interface ButtonColorBuilder {
         static ButtonColorBuilder unsupportedBuilder() {
             return new ButtonColorBuilder() {
@@ -32,8 +34,7 @@ public interface ButtonColor extends Castable<ButtonColor> {
                 }
 
                 private ButtonColor empty() {
-                    return new ButtonColor() {
-                    };
+                    return () -> null;
                 }
             };
         }

@@ -10,6 +10,11 @@ public class VkButtonColor implements ButtonColor {
         this.buttonColor = buttonColor;
     }
 
+    @Override
+    public String asJsonValue() {
+        return buttonColor.name().toLowerCase();
+    }
+
     public KeyboardButtonColor getButtonColor() {
         return buttonColor;
     }
