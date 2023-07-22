@@ -9,6 +9,12 @@ public class DiscordButton extends DefaultButton {
         super(label);
     }
 
+    public DiscordButton(Button button) {
+        super(button.getLabel());
+        this.color = new DiscordButtonColor(button.getStyle());
+        this.actionData = button.getId();
+    }
+
     public Button create() {
         return color.as(DiscordButtonColor.class).create(actionData, label);
     }
