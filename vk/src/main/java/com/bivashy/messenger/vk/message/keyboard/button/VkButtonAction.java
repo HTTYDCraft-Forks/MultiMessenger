@@ -1,33 +1,48 @@
 package com.bivashy.messenger.vk.message.keyboard.button;
 
 import com.bivashy.messenger.common.button.ButtonAction;
-import com.vk.api.sdk.objects.messages.TemplateActionTypeNames;
 
 public class VkButtonAction implements ButtonAction {
-    private final TemplateActionTypeNames buttonActionType;
 
-    public VkButtonAction(TemplateActionTypeNames buttonActionType) {
-        this.buttonActionType = buttonActionType;
+    private final Type type;
+
+    public VkButtonAction(Type type) {
+        this.type = type;
     }
 
-    public TemplateActionTypeNames getButtonActionType() {
-        return buttonActionType;
+    public Type getType() {
+        return type;
     }
 
+    public String getRawType() {
+        return type.rawType();
+    }
+
+    public enum Type {
+        TEXT, CALLBACK, OPEN_LINK;
+
+        public String rawType() {
+            return name().toLowerCase();
+        }
+    }
     public static class Builder implements ButtonActionBuilder {
+
+        // TODO: Use enum instead of raw string
         @Override
-        public ButtonAction reply() {
-            return new VkButtonAction(TemplateActionTypeNames.TEXT);
+        public VkButtonAction reply() {
+            return new VkButtonAction(Type.TEXT);
         }
 
         @Override
-        public ButtonAction callback() {
-            return new VkButtonAction(TemplateActionTypeNames.CALLBACK);
+        public VkButtonAction callback() {
+            return new VkButtonAction(Type.CALLBACK);
         }
 
         @Override
-        public ButtonAction link() {
-            return new VkButtonAction(TemplateActionTypeNames.OPEN_LINK);
+        public VkButtonAction link() {
+            return new VkButtonAction(Type.OPEN_LINK);
         }
+
     }
+
 }

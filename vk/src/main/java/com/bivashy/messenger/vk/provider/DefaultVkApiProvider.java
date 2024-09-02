@@ -1,22 +1,31 @@
 package com.bivashy.messenger.vk.provider;
 
-import com.vk.api.sdk.client.VkApiClient;
-import com.vk.api.sdk.client.actors.GroupActor;
+import api.longpoll.bots.VkBot;
+import api.longpoll.bots.methods.VkBotsMethods;
 
 public class DefaultVkApiProvider implements VkApiProvider {
-    private final GroupActor actor;
-    private final VkApiClient client;
 
-    public DefaultVkApiProvider(GroupActor actor, VkApiClient client) {
-        this.actor = actor;
-        this.client = client;
+    private final VkBot bot;
+    private final VkBotsMethods methods;
+
+    public DefaultVkApiProvider(VkBot bot, VkBotsMethods methods) {
+        this.bot = bot;
+        this.methods = methods;
     }
 
-    public GroupActor getActor() {
-        return actor;
+    public DefaultVkApiProvider(VkBot bot) {
+        this.bot = bot;
+        this.methods = new VkBotsMethods(bot::getAccessToken);
     }
 
-    public VkApiClient getClient() {
-        return client;
+    @Override
+    public VkBot getBot() {
+        return bot;
     }
+
+    @Override
+    public VkBotsMethods vk() {
+        return methods;
+    }
+
 }

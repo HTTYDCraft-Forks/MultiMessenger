@@ -1,23 +1,18 @@
 package com.bivashy.messenger.vk.message;
 
-import java.util.StringJoiner;
+import java.util.concurrent.ThreadLocalRandom;
 
+import api.longpoll.bots.exceptions.VkApiException;
+import api.longpoll.bots.methods.impl.messages.Send;
 import com.bivashy.messenger.common.ApiProvider;
-import com.bivashy.messenger.common.file.FileType;
 import com.bivashy.messenger.common.file.MessengerFile;
 import com.bivashy.messenger.common.identificator.Identificator;
 import com.bivashy.messenger.common.message.DefaultMessage;
 import com.bivashy.messenger.vk.provider.VkApiProvider;
 import com.bivashy.messenger.vk.message.keyboard.VkKeyboard;
-import com.vk.api.sdk.exceptions.ApiException;
-import com.vk.api.sdk.exceptions.ClientException;
-import com.vk.api.sdk.objects.photos.responses.PhotoUploadResponse;
-import com.vk.api.sdk.objects.photos.responses.SaveMessagesPhotoResponse;
-import com.vk.api.sdk.queries.messages.MessagesSendQuery;
-
-import io.netty.util.internal.ThreadLocalRandom;
 
 public class VkMessage extends DefaultMessage {
+
     private static VkApiProvider defaultApiProvider;
 
     public VkMessage(String text) {
@@ -37,48 +32,39 @@ public class VkMessage extends DefaultMessage {
         if (!identificator.isNumber())
             throw new IllegalArgumentException("Cannot send message to the not number id");
         VkApiProvider vkApiProvider = apiProvider.as(VkApiProvider.class);
-        MessagesSendQuery sendQuery = vkApiProvider.getClient().messages().send(vkApiProvider.getActor())
-                .peerId((int) identificator.asNumber()).randomId(ThreadLocalRandom.current().nextInt()).message(text);
+        Send send = vkApiProvider.vk().messages.send()
+                .setPeerId((int) identificator.asNumber())
+                .setRandomId(ThreadLocalRandom.current().nextInt())
+                .setMessage(text);
         if (keyboard != null && keyboard.safeAs(VkKeyboard.class).isPresent())
-            sendQuery.keyboard(keyboard.as(VkKeyboard.class).create());
+            send.setKeyboard(keyboard.as(VkKeyboard.class).create());
         if (replyIdentificator != null && replyIdentificator.isNumber())
-            sendQuery.replyTo((int) replyIdentificator.asNumber());
+            send.setReplyTo((int) replyIdentificator.asNumber());
         if (files != null && files.length != 0)
-            sendQuery.attachment(toAttachment(files, vkApiProvider));
+            addAttachments(send, files);
 
         try {
-            sendQuery.execute();
-        } catch(ApiException | ClientException e) {
+            send.execute();
+        } catch (VkApiException e) {
+            // TODO: Proper error logging
             e.printStackTrace();
         }
     }
 
-    private String toAttachment(MessengerFile[] files, VkApiProvider vkApiProvider) {
-        StringJoiner joiner = new StringJoiner(",");
+    private void addAttachments(Send send, MessengerFile[] files) {
         for (MessengerFile file : files) {
-            String rawAttachment = toAttachment(file, vkApiProvider);
-            if (rawAttachment != null)
-                joiner.add(rawAttachment);
+            switch (file.getFileType()) {
+                case PHOTO:
+                    send.addPhoto(file.getFile());
+                    break;
+                case VIDEO:
+                case AUDIO:
+                case DOCUMENT:
+                case OTHER:
+                    send.addDoc(file.getFile());
+                    break;
+            }
         }
-        return joiner.toString();
-    }
-
-    private String toAttachment(MessengerFile file, VkApiProvider vkApiProvider) {
-        if (file.getFileType() != FileType.PHOTO)// You can attach photo only in vk api
-            return null;
-        try {
-            String uploadUrl = vkApiProvider.getClient().photos().getMessagesUploadServer(vkApiProvider.getActor())
-                    .execute().getUploadUrl().toString();
-            PhotoUploadResponse photoUploadResponse = vkApiProvider.getClient().upload()
-                    .photo(uploadUrl, file.getFile()).execute();
-            SaveMessagesPhotoResponse savePhotoResponse = vkApiProvider.getClient().photos()
-                    .saveMessagesPhoto(vkApiProvider.getActor(), photoUploadResponse.getPhoto())
-                    .server(photoUploadResponse.getServer()).hash(photoUploadResponse.getHash()).execute().get(0);
-            return "photo" + savePhotoResponse.getOwnerId() + "_" + savePhotoResponse.getId();
-        } catch(ClientException | ApiException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public static VkApiProvider getDefaultApiProvider() {
@@ -90,8 +76,11 @@ public class VkMessage extends DefaultMessage {
     }
 
     public static class Builder extends DefaultMessageBuilder {
+
         public Builder(String text) {
             super(new VkMessage(text));
         }
+
     }
+
 }

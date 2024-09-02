@@ -1,12 +1,14 @@
 package com.bivashy.messenger.vk.message.keyboard.button;
 
+import api.longpoll.bots.model.objects.additional.buttons.Button;
+import api.longpoll.bots.model.objects.additional.buttons.Button.Color;
 import com.bivashy.messenger.common.button.ButtonColor;
-import com.vk.api.sdk.objects.messages.KeyboardButtonColor;
 
 public class VkButtonColor implements ButtonColor {
-    private final KeyboardButtonColor buttonColor;
 
-    public VkButtonColor(KeyboardButtonColor buttonColor) {
+    private final Button.Color buttonColor;
+
+    public VkButtonColor(Button.Color buttonColor) {
         this.buttonColor = buttonColor;
     }
 
@@ -15,34 +17,37 @@ public class VkButtonColor implements ButtonColor {
         return buttonColor.name().toLowerCase();
     }
 
-    public KeyboardButtonColor getButtonColor() {
+    public Color getButtonColor() {
         return buttonColor;
     }
 
     public static class Builder implements ButtonColorBuilder {
+
         @Override
         public ButtonColor red() {
-            return new VkButtonColor(KeyboardButtonColor.NEGATIVE);
+            return new VkButtonColor(Button.Color.NEGATIVE);
         }
 
         @Override
         public ButtonColor blue() {
-            return new VkButtonColor(KeyboardButtonColor.PRIMARY);
+            return new VkButtonColor(Button.Color.PRIMARY);
         }
 
         @Override
         public ButtonColor green() {
-            return new VkButtonColor(KeyboardButtonColor.POSITIVE);
+            return new VkButtonColor(Button.Color.POSITIVE);
         }
 
         @Override
         public ButtonColor white() {
-            return new VkButtonColor(KeyboardButtonColor.DEFAULT);
+            return new VkButtonColor(Color.SECONDARY);
         }
 
         @Override
         public ButtonColor grey() {
-            return new VkButtonColor(KeyboardButtonColor.DEFAULT);
+            return new VkButtonColor(Color.SECONDARY);
         }
+
     }
+
 }

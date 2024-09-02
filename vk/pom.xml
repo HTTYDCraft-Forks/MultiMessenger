@@ -10,7 +10,7 @@
     <artifactId>vk</artifactId>
 
     <properties>
-        <vk-java-sdk.version>1.0.14</vk-java-sdk.version>
+        <vk-java-longpool.version>4.1.8</vk-java-longpool.version>
     </properties>
 
     <dependencies>
@@ -21,10 +21,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.vk.api</groupId>
-            <artifactId>sdk</artifactId>
-            <version>${vk-java-sdk.version}</version>
-            <scope>provided</scope>
+            <groupId>io.github.bivashy</groupId>
+            <artifactId>java-vk-bots-longpoll-api</artifactId>
+            <version>${vk-java-longpool.version}</version>
+            <scope>provided</scope> <!-- TODO: Avoid provided scope -->
         </dependency>
     </dependencies>
 </project>
