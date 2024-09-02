@@ -8,6 +8,7 @@ import api.longpoll.bots.model.objects.additional.buttons.TextButton;
 import api.longpoll.bots.model.objects.additional.buttons.VKAppsButton;
 import com.bivashy.messenger.common.button.DefaultButton;
 import com.bivashy.messenger.vk.message.keyboard.button.VkButtonAction.Type;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 
 public class VkButton extends DefaultButton {
@@ -21,7 +22,7 @@ public class VkButton extends DefaultButton {
         this.color = new VkButtonColor(getColor(wrappingButton));
         switch (wrappingButton.getAction().getType()) {
             case "callback":
-                this.actionData = wrappingButton.getAction().getPayload().toString();
+                this.actionData = getRawPayload(wrappingButton.getAction());
                 break;
             case "open_link":
                 this.actionData = ((OpenLinkButton.Action) wrappingButton.getAction()).getLink();
@@ -29,6 +30,11 @@ public class VkButton extends DefaultButton {
             default:
                 break;
         }
+    }
+
+    private String getRawPayload(Button.Action action) {
+        JsonElement element = action.getPayload();
+        return element.isJsonPrimitive() ? element.getAsString() : element.toString();
     }
 
     private static String getLabel(Button.Action action) {
